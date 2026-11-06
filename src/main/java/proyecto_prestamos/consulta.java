@@ -1,5 +1,7 @@
 package proyecto_prestamos;
 
+/** borrar al terminar **/
+
 import proyecto_prestamos.conexion.conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
