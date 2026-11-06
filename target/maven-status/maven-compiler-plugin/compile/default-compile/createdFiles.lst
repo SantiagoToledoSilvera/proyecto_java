@@ -1,5 +1,6 @@
 proyecto_prestamos\servicio\CalculoInteres.class
 proyecto_prestamos\conexion\Conexion.class
+proyecto_prestamos\dao\ClienteDAO.class
 proyecto_prestamos\modelos\Cliente.class
 proyecto_prestamos\modelos\Empleado.class
 proyecto_prestamos\main.class

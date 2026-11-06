@@ -1,4 +1,4 @@
-package proyecto_prestamos.DAO;
+package proyecto_prestamos.dao;
 
 import java.sql.*;
 import proyecto_prestamos.conexion.Conexion;
