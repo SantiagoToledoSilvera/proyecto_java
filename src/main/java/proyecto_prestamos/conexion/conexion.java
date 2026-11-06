@@ -4,21 +4,33 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
-public class conexion {
-    
+public class Conexion {
+
+    private static Conexion instancia;
+    private Connection con;
+
     private static final String URL = "jdbc:mysql://localhost:3306/crediya_db";
-    
     private static final String USER = "root";
     private static final String PASSWORD = "Voltito";
-    public static Connection conectar() {
-    
-        Connection conexion = null;
+
+    private Conexion() {                    
         try {
-            conexion = DriverManager.getConnection(URL, USER, PASSWORD);
-            System.out.println("Conexion exitosa.");
+            con = DriverManager.getConnection(URL, USER, PASSWORD);
+            System.out.println("Connected to database crediya");
         } catch (SQLException e) {
-            System.out.println("Error de conexion: " + e.getMessage());
+            System.out.println("Error de conexion " + e.getMessage());
         }
-        return conexion;
+    }
+
+    public static Conexion getInstancia() {
+        if (instancia == null) {
+            instancia = new Conexion();
+        }
+        return instancia;
+}
+
+    public Connection getConexion() {
+        return con; 
     }
 }
+

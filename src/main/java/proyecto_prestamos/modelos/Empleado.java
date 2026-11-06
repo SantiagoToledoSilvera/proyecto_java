@@ -3,9 +3,9 @@ package proyecto_prestamos.modelos;
 public class Empleado extends Persona {
     
        private String rol;
-       private int salario;
+       private Double salario;
    
-   public Empleado(int id, String nombre, String documento, String correo, String fNacim, String rol, int salario) {
+   public Empleado(int id, String nombre, String documento, String correo, String fNacim, String rol, Double salario) {
        super(id, nombre, documento, correo, fNacim);
        this.rol = rol;
        this.salario = salario;
@@ -19,11 +19,11 @@ public class Empleado extends Persona {
         this.rol = rol;
     }
 
-    public int getSalario() {
+    public Double getSalario() {
         return salario;
     }
 
-    public void setSalario(int salario) {
+    public void setSalario(Double salario) {
         this.salario = salario;
     }
 
@@ -31,5 +31,4 @@ public class Empleado extends Persona {
     public String toString() {
         return super.toString() + ", rol=" + rol + ", salario=" + salario;
     }
-   
 }
