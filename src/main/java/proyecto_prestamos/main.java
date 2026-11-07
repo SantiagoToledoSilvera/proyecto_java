@@ -5,24 +5,26 @@ import java.util.Scanner;
 import proyecto_prestamos.modelos.Cliente;
 import proyecto_prestamos.modelos.Empleado;
 import proyecto_prestamos.conexion.Conexion;
+import proyecto_prestamos.dao.ClienteDAO;
+import java.util.List;
 
 public class main {
     public static void main(String[] args) {
         
         
-        /** Comando de prueba consulta **/
-        Cliente c = new Cliente(1, "Juan Carlos Bodoque", "123456", "jucabo@gmail.com", "01/11/2007", "3665485641");
+        /** Comando de prueba consulta - Borrar al terminar programa **/
+        ClienteDAO dao = new ClienteDAO();
+        
+        Cliente c = dao.buscarPorId(1);
         System.out.println(c);
         
-        Empleado e = new Empleado(17, "Karla Vargas", "987654", "karlauwu@gmail.com", "23/05/1999", "Gerente", 2500.00);
-        System.out.println(e);
+        c.setTelefono("3109998888");
+        dao.actualizar(c);
+        System.out.println(dao.buscarPorId(1));
         
-        Connection c1 = Conexion.getInstancia().getConexion();
-        Connection c2 = Conexion.getInstancia().getConexion();
-        System.out.println(c1 == c2);  
+        dao.eliminar(2);
+        System.out.println(dao.listar());
         
-        Empleado e1 = new Empleado(1, "Carlos Ruiz", "987654", "carlos@mail.com", "1985-03-20", "Asesor", 2500000.50);
-        System.out.println(e1);
          
         /** ___________________________ **/
         
