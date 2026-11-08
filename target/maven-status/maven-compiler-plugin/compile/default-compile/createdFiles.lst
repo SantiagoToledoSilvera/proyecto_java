@@ -9,8 +9,11 @@ proyecto_prestamos\modelos\Empleado.class
 proyecto_prestamos\modelos\EstadoPrestamos.class
 proyecto_prestamos\servicio\SesionActual.class
 proyecto_prestamos\main.class
+proyecto_prestamos\servicio\AuthService.class
+proyecto_prestamos\servicio\PrestamoService.class
 proyecto_prestamos\modelos\Pago.class
 proyecto_prestamos\servicio\CalculoInteres.class
 proyecto_prestamos\dao\PrestamoDAO.class
 proyecto_prestamos\servicio\InteresCompuesto.class
+proyecto_prestamos\servicio\NegocioException.class
 proyecto_prestamos\modelos\Persona.class

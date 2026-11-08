@@ -29,9 +29,9 @@ public class PrestamoDAO {
             ps.setString(7, p.getEstado().name());
             ps.setDouble(8, p.getSaldoPendiente());
             ps.executeUpdate();
-            System.out.println("Préstamo registrado con éxito");
+            System.out.println("Prestamo registrado con exito");
         } catch (SQLException x) {
-            System.out.println("Error al crear el préstamo: " + x.getMessage());
+            System.out.println("Error al crear el prestamo: " + x.getMessage());
         }
     }
     
