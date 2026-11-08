@@ -3,19 +3,20 @@ package proyecto_prestamos;
 import java.util.Scanner;
 import proyecto_prestamos.modelos.Prestamo;
 import java.time.LocalDate;
+import proyecto_prestamos.dao.PagoDAO;
 import proyecto_prestamos.dao.PrestamoDAO;
 import proyecto_prestamos.modelos.EstadoPrestamos;
+import proyecto_prestamos.modelos.Pago;
 
 public class main {
     public static void main(String[] args) {
         
         
         /** Comando de prueba consulta - Borrar al terminar programa **/
-            PrestamoDAO dao = new PrestamoDAO();
-            dao.insertar(new Prestamo(0, 1, 1, 1000000, 2, 12,
-                LocalDate.now(), EstadoPrestamos.SOLICITADO, 1268241.79));
+            PagoDAO dao = new PagoDAO();
+            dao.insertar(new Pago(0, 22, LocalDate.now(), 105686.82));
+            System.out.println(dao.listarPorPrestamo(22));
             System.out.println(dao.listar());
-            System.out.println(dao.listarPorCliente(1));
         
          
         /** ___________________________ **/
