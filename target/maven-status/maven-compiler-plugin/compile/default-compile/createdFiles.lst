@@ -1,8 +1,12 @@
+proyecto_prestamos\modelos\Prestamo.class
+proyecto_prestamos\dao\EmpleadoDAO.class
 proyecto_prestamos\servicio\CalculoInteres.class
 proyecto_prestamos\conexion\Conexion.class
+proyecto_prestamos\dao\PrestamoDAO.class
 proyecto_prestamos\dao\ClienteDAO.class
 proyecto_prestamos\modelos\Cliente.class
 proyecto_prestamos\modelos\Empleado.class
+proyecto_prestamos\modelos\EstadoPrestamos.class
 proyecto_prestamos\main.class
 proyecto_prestamos\servicio\InteresCompuesto.class
 proyecto_prestamos\modelos\Persona.class

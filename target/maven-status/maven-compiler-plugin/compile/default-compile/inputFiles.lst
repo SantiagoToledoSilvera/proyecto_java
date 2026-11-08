@@ -1,8 +1,12 @@
 C:\Users\Asus\Documents\NetBeansProjects\proyectos\src\main\java\proyecto_prestamos\conexion\Conexion.java
 C:\Users\Asus\Documents\NetBeansProjects\proyectos\src\main\java\proyecto_prestamos\dao\ClienteDAO.java
+C:\Users\Asus\Documents\NetBeansProjects\proyectos\src\main\java\proyecto_prestamos\dao\EmpleadoDAO.java
+C:\Users\Asus\Documents\NetBeansProjects\proyectos\src\main\java\proyecto_prestamos\dao\PrestamoDAO.java
 C:\Users\Asus\Documents\NetBeansProjects\proyectos\src\main\java\proyecto_prestamos\main.java
 C:\Users\Asus\Documents\NetBeansProjects\proyectos\src\main\java\proyecto_prestamos\modelos\Cliente.java
 C:\Users\Asus\Documents\NetBeansProjects\proyectos\src\main\java\proyecto_prestamos\modelos\Empleado.java
+C:\Users\Asus\Documents\NetBeansProjects\proyectos\src\main\java\proyecto_prestamos\modelos\EstadoPrestamos.java
 C:\Users\Asus\Documents\NetBeansProjects\proyectos\src\main\java\proyecto_prestamos\modelos\Persona.java
+C:\Users\Asus\Documents\NetBeansProjects\proyectos\src\main\java\proyecto_prestamos\modelos\Prestamo.java
 C:\Users\Asus\Documents\NetBeansProjects\proyectos\src\main\java\proyecto_prestamos\servicio\CalculoInteres.java
 C:\Users\Asus\Documents\NetBeansProjects\proyectos\src\main\java\proyecto_prestamos\servicio\InteresCompuesto.java

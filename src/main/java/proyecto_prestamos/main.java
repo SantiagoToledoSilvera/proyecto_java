@@ -1,29 +1,21 @@
 package proyecto_prestamos;
 
-import java.sql.Connection;
 import java.util.Scanner;
-import proyecto_prestamos.modelos.Cliente;
-import proyecto_prestamos.modelos.Empleado;
-import proyecto_prestamos.conexion.Conexion;
-import proyecto_prestamos.dao.ClienteDAO;
-import java.util.List;
+import proyecto_prestamos.modelos.Prestamo;
+import java.time.LocalDate;
+import proyecto_prestamos.dao.PrestamoDAO;
+import proyecto_prestamos.modelos.EstadoPrestamos;
 
 public class main {
     public static void main(String[] args) {
         
         
         /** Comando de prueba consulta - Borrar al terminar programa **/
-        ClienteDAO dao = new ClienteDAO();
-        
-        Cliente c = dao.buscarPorId(1);
-        System.out.println(c);
-        
-        c.setTelefono("3109998888");
-        dao.actualizar(c);
-        System.out.println(dao.buscarPorId(1));
-        
-        dao.eliminar(2);
-        System.out.println(dao.listar());
+            PrestamoDAO dao = new PrestamoDAO();
+            dao.insertar(new Prestamo(0, 1, 1, 1000000, 2, 12,
+                LocalDate.now(), EstadoPrestamos.SOLICITADO, 1268241.79));
+            System.out.println(dao.listar());
+            System.out.println(dao.listarPorCliente(1));
         
          
         /** ___________________________ **/
