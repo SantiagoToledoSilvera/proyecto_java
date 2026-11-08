@@ -5,28 +5,17 @@ import proyecto_prestamos.servicio.AuthService;
 import proyecto_prestamos.servicio.InteresCompuesto;
 import proyecto_prestamos.servicio.PrestamoService;
 import proyecto_prestamos.servicio.SesionActual;
-import proyecto_prestamos.servicio.NegocioException;
+import proyecto_prestamos.menus.*;
 
 
 public class main {
     public static void main(String[] args) {
         
-        
-        /** Comando de prueba - Borrar al terminar **/
-        AuthService authTest = new AuthService();
-        PrestamoService ps = new PrestamoService(new InteresCompuesto());
-
-        try {
-            authTest.login("Admin Principal", "1000");
-            ps.solicitar(1, 500000, 2, 6);   // crea una SOLICITADO (anota su id en la tabla)
-        } catch (NegocioException e) {
-            System.out.println("Error: " + e.getMessage());
-        }
-        /** ___________________________ **/
-        
         Scanner sc = new Scanner(System.in);
         AuthService auth = new AuthService();
         String op; 
+        Entrada in = new Entrada(sc);
+        PrestamoService servicio = new PrestamoService(new InteresCompuesto());
         
         do {
             System.out.println("""
@@ -45,11 +34,10 @@ public class main {
                     String documento = sc.nextLine();
 
                     if (auth.login(nombre, documento)) {
-                        if (SesionActual.getInstancia().esAdmin()) {
-                            System.out.println("Menu administrador (pendiente)");
-                        } else {
-                            System.out.println("Menu cliente (pendiente)");
-                        }
+                        MenuBase menu = SesionActual.getInstancia().esAdmin()
+                                ? new MenuAdmin(in, servicio)
+                                : new MenuCliente(in, servicio);
+                        menu.mostrar();
                         auth.logout();
                     } else {
                         System.out.println("Credenciales invalidas");
