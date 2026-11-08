@@ -4,8 +4,10 @@ proyecto_prestamos\dao\PagoDAO.class
 proyecto_prestamos\conexion\Conexion.class
 proyecto_prestamos\dao\ClienteDAO.class
 proyecto_prestamos\modelos\Cliente.class
+proyecto_prestamos\modelos\Rol.class
 proyecto_prestamos\modelos\Empleado.class
 proyecto_prestamos\modelos\EstadoPrestamos.class
+proyecto_prestamos\servicio\SesionActual.class
 proyecto_prestamos\main.class
 proyecto_prestamos\modelos\Pago.class
 proyecto_prestamos\servicio\CalculoInteres.class

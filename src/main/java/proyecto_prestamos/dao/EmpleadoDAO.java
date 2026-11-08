@@ -116,4 +116,22 @@ public class EmpleadoDAO {
                 rs.getDouble("salario")
         );
     }   
+
+    public Empleado buscarPorNombreYDocumento(String nombre, String documento) {
+        String sql = "SELECT * FROM empleados WHERE nombre = ? AND documento = ?";
+        Connection con = Conexion.getInstancia().getConexion();
+
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, nombre);
+            ps.setString(2, documento);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return construirEmpleado(rs);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error en la búsqueda: " + e.getMessage());
+        }
+        return null;
+    }
 }

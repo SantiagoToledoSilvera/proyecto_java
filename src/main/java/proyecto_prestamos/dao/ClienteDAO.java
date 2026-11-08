@@ -113,4 +113,22 @@ public class ClienteDAO {
                 rs.getString("telefono")
         );
     }   
+        
+    public Cliente buscarPorNombreYDocumento(String nombre, String documento) {
+        String sql = "SELECT * FROM clientes WHERE nombre = ? AND documento = ?";
+        Connection con = Conexion.getInstancia().getConexion();
+
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setString(1, nombre);
+            ps.setString(2, documento);
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return construirCliente(rs);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error en la búsqueda: " + e.getMessage());
+        }
+        return null;
+    } 
 }

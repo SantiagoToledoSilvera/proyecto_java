@@ -11,23 +11,27 @@ import proyecto_prestamos.modelos.EstadoPrestamos;
 public class PrestamoDAO {
 
     public void insertar(Prestamo p) {
-        String sql = "INSERT INTO prestamos (cliente_id, empleado_id, monto, interes, cuotas, "
-           + "fecha_inicio, estado, saldo_pendiente) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
-        
+        String sql = "INSERT INTO prestamos (cliente_id, empleado_id, monto, interes, cuotas, fecha_inicio, estado, saldo_pendiente)" 
+                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
         Connection con = Conexion.getInstancia().getConexion();
         try (PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setInt(1, p.getClienteId());
-            ps.setInt(2, p.getEmpleadoId());
-            ps.setDouble(3, p.getMonto());      
+            if (p.getEmpleadoId() == 0) {
+                ps.setNull(2, Types.INTEGER);
+            } else {
+                ps.setInt(2, p.getEmpleadoId());
+            }
+            ps.setDouble(3, p.getMonto());
             ps.setDouble(4, p.getInteres());
             ps.setInt(5, p.getCuotas());
-            ps.setDate(6, Date.valueOf(p.getFechaInicio()));   
-            ps.setString(7, p.getEstado().name());             
-            ps.setDouble(8, p.getSaldoPendiente());            
+            ps.setDate(6, Date.valueOf(p.getFechaInicio()));
+            ps.setString(7, p.getEstado().name());
+            ps.setDouble(8, p.getSaldoPendiente());
             ps.executeUpdate();
-            System.out.println("Prestamo registrado con exito");
+            System.out.println("Préstamo registrado con éxito");
         } catch (SQLException x) {
-            System.out.println("Error al crear el prestamo: " + x.getMessage());
+            System.out.println("Error al crear el préstamo: " + x.getMessage());
         }
     }
     
@@ -65,26 +69,31 @@ public class PrestamoDAO {
         return null; 
     }
     
-    public void actualizar(Prestamo p) {
-        String sql = "UPDATE prestamos SET cliente_id = ?, empleado_id= ?, monto = ?, interes = ?, cuotas = ?, fecha_inicio = ?, estado = ?, saldo_pendiente = ? WHERE id = ?";
+     public void actualizar(Prestamo p) {
+        String sql = "UPDATE prestamos SET cliente_id = ?, empleado_id = ?, monto = ?, interes = ?, "
+                + "cuotas = ?, fecha_inicio = ?, estado = ?, saldo_pendiente = ? WHERE id = ?";
         Connection con = Conexion.getInstancia().getConexion();
 
         try (PreparedStatement ps = con.prepareStatement(sql)) {
             ps.setInt(1, p.getClienteId());
-            ps.setInt(2, p.getEmpleadoId());
+            if (p.getEmpleadoId() == 0) {
+                ps.setNull(2, Types.INTEGER);
+            } else {
+                ps.setInt(2, p.getEmpleadoId());
+            }
             ps.setDouble(3, p.getMonto());
             ps.setDouble(4, p.getInteres());
             ps.setInt(5, p.getCuotas());
             ps.setDate(6, Date.valueOf(p.getFechaInicio()));
             ps.setString(7, p.getEstado().name());
             ps.setDouble(8, p.getSaldoPendiente());
-            ps.setInt(9, p.getId()); 
+            ps.setInt(9, p.getId());
 
             int filas = ps.executeUpdate();
             if (filas == 0) {
-                System.out.println("No existe un prestamo con ese id");
+                System.out.println("No existe un préstamo con ese id");
             } else {
-                System.out.println("Prestamo actualizado con exito");
+                System.out.println("Préstamo actualizado con éxito");
             }
         } catch (SQLException x) {
             System.out.println("Error al actualizar: " + x.getMessage());

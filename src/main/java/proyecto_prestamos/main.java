@@ -3,6 +3,8 @@ package proyecto_prestamos;
 import java.util.Scanner;
 import proyecto_prestamos.modelos.Prestamo;
 import java.time.LocalDate;
+import proyecto_prestamos.dao.ClienteDAO;
+import proyecto_prestamos.dao.EmpleadoDAO;
 import proyecto_prestamos.dao.PagoDAO;
 import proyecto_prestamos.dao.PrestamoDAO;
 import proyecto_prestamos.modelos.EstadoPrestamos;
@@ -13,11 +15,8 @@ public class main {
         
         
         /** Comando de prueba consulta - Borrar al terminar programa **/
-            PagoDAO dao = new PagoDAO();
-            dao.insertar(new Pago(0, 22, LocalDate.now(), 105686.82));
-            System.out.println(dao.listarPorPrestamo(22));
-            System.out.println(dao.listar());
-        
+            System.out.println(new EmpleadoDAO().buscarPorNombreYDocumento("Admin Principal", "1000"));
+            System.out.println(new ClienteDAO().buscarPorNombreYDocumento("Ana Gómez", "123456"));
          
         /** ___________________________ **/
         
