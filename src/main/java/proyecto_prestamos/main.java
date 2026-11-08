@@ -18,12 +18,9 @@ public class main {
 
         try {
             authTest.login("Admin Principal", "1000");
-            ps.solicitar(1, 500000, 2, 6);     // debe registrar con éxito
-            ps.solicitar(1, -5, 2, 6);         // debe lanzar el error del monto
+            ps.solicitar(1, 500000, 2, 6);   // crea una SOLICITADO (anota su id en la tabla)
         } catch (NegocioException e) {
             System.out.println("Error: " + e.getMessage());
-        } finally {
-            authTest.logout();
         }
         /** ___________________________ **/
         

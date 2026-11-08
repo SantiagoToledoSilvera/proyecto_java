@@ -43,7 +43,7 @@ public class PrestamoService {
         if (cuotas <= 0) {
             throw new NegocioException("Las cuotas deben ser mayores a 0");
         }
-        if (interes <= 0) {
+        if (interes < 0) {
             throw new NegocioException("Los intereses no pueden ser negativos");
         }
 
@@ -51,4 +51,98 @@ public class PrestamoService {
                 LocalDate.now(), EstadoPrestamos.SOLICITADO, 0);
         prestamoDAO.insertar(p);
     }
+
+    public void aprobar(int prestamoId) {
+        exigirAdmin();
+
+        Prestamo p = prestamoDAO.buscarPorId(prestamoId);
+        if (p == null) {
+            throw new NegocioException("El prestamo no existe");
+        }
+        if (p.getEstado() != EstadoPrestamos.SOLICITADO) {
+            throw new NegocioException("Las solicitudes solo se pueden aprobar");
+        }
+
+        double total = calculo.calcularMontoTotal(p.getMonto(), p.getInteres(), p.getCuotas());
+
+        p.setSaldoPendiente(total);
+        p.setEstado(EstadoPrestamos.ACTIVO);
+        p.setEmpleadoId(SesionActual.getInstancia().getPersona().getId());
+        p.setFechaInicio(LocalDate.now());
+        prestamoDAO.actualizar(p);
+    }
+    
+    public void rechazar(int prestamoId) {
+        exigirAdmin();
+
+        Prestamo p = prestamoDAO.buscarPorId(prestamoId);
+        if (p == null) {
+            throw new NegocioException("El prestamo no existe");
+        }
+        if (p.getEstado() != EstadoPrestamos.SOLICITADO) {
+            throw new NegocioException("Las solicitudes solo se pueden rechazar");
+        }
+
+
+        p.setEstado(EstadoPrestamos.RECHAZADO);
+        p.setEmpleadoId(SesionActual.getInstancia().getPersona().getId());
+        prestamoDAO.actualizar(p);
+    }
+    
+    public void registrarPago(int prestamoId, double monto) {
+        exigirSesion();
+        SesionActual s = SesionActual.getInstancia();
+
+        Prestamo p = prestamoDAO.buscarPorId(prestamoId);
+        if (p == null) {
+            throw new NegocioException("El prestamo no existe");
+        }
+
+        if (!s.esAdmin() && p.getClienteId() != s.getPersona().getId()) {
+            throw new NegocioException("No se puede pagar prestamos ajenos");
+        }
+        if (p.getEstado() != EstadoPrestamos.ACTIVO) {
+            throw new NegocioException("Solo puede pagar prestamos activos");
+        }
+        if (monto <= 0) {
+            throw new NegocioException("El monto debe ser mayor a 0");
+        }
+        if (monto > p.getSaldoPendiente()) {
+            throw new NegocioException("El pago supera el saldo pendiente");
+        }
+
+        pagoDAO.insertar(new Pago(0, prestamoId, LocalDate.now(), monto));
+
+        double nuevoSaldo = Math.round((p.getSaldoPendiente() - monto) * 100) / 100.0;
+        p.setSaldoPendiente(nuevoSaldo);
+
+        if (nuevoSaldo <= 0) {
+            p.setEstado(EstadoPrestamos.PAGADO);
+        }
+
+        prestamoDAO.actualizar(p);
+    }
+    
+    public java.util.List<Prestamo> listarMisPrestamos() {
+        exigirSesion();
+        SesionActual s = SesionActual.getInstancia();
+        if (s.esAdmin()) {
+            return prestamoDAO.listar();
+        }
+        return prestamoDAO.listarPorCliente(s.getPersona().getId());
+    }
+
+    public java.util.List<Pago> historialPagos(int prestamoId) {
+        exigirSesion();
+        Prestamo p = prestamoDAO.buscarPorId(prestamoId);
+        if (p == null) {
+            throw new NegocioException("El prestamo no existe");
+        }
+        SesionActual s = SesionActual.getInstancia();
+        if (!s.esAdmin() && p.getClienteId() != s.getPersona().getId()) {
+            throw new NegocioException("No puede ver pagos de prestamos ajenos");
+        }
+        return pagoDAO.listarPorPrestamo(prestamoId);
+    }
+    
 }
