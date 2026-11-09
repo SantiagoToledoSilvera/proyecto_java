@@ -86,7 +86,7 @@ public class GestionEmpleado extends MenuBase {
     }
 
     private void eliminar() {
-        int id = in.entero("Id del cliente a eliminar: ");
+        int id = in.entero("Id del empleado a eliminar: ");
         
         if (id == SesionActual.getInstancia().getPersona().getId()) {
             System.out.println("No puede eliminar su propia cuenta");

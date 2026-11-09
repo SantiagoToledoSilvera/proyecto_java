@@ -10,6 +10,7 @@ C:\Users\Asus\Documents\NetBeansProjects\proyectos\src\main\java\proyecto_presta
 C:\Users\Asus\Documents\NetBeansProjects\proyectos\src\main\java\proyecto_prestamos\menus\MenuAdmin.java
 C:\Users\Asus\Documents\NetBeansProjects\proyectos\src\main\java\proyecto_prestamos\menus\MenuBase.java
 C:\Users\Asus\Documents\NetBeansProjects\proyectos\src\main\java\proyecto_prestamos\menus\MenuCliente.java
+C:\Users\Asus\Documents\NetBeansProjects\proyectos\src\main\java\proyecto_prestamos\menus\MenuReportes.java
 C:\Users\Asus\Documents\NetBeansProjects\proyectos\src\main\java\proyecto_prestamos\modelos\Cliente.java
 C:\Users\Asus\Documents\NetBeansProjects\proyectos\src\main\java\proyecto_prestamos\modelos\Empleado.java
 C:\Users\Asus\Documents\NetBeansProjects\proyectos\src\main\java\proyecto_prestamos\modelos\EstadoPrestamos.java
@@ -22,4 +23,5 @@ C:\Users\Asus\Documents\NetBeansProjects\proyectos\src\main\java\proyecto_presta
 C:\Users\Asus\Documents\NetBeansProjects\proyectos\src\main\java\proyecto_prestamos\servicio\InteresCompuesto.java
 C:\Users\Asus\Documents\NetBeansProjects\proyectos\src\main\java\proyecto_prestamos\servicio\NegocioException.java
 C:\Users\Asus\Documents\NetBeansProjects\proyectos\src\main\java\proyecto_prestamos\servicio\PrestamoService.java
+C:\Users\Asus\Documents\NetBeansProjects\proyectos\src\main\java\proyecto_prestamos\servicio\ReporteService.java
 C:\Users\Asus\Documents\NetBeansProjects\proyectos\src\main\java\proyecto_prestamos\servicio\SesionActual.java
