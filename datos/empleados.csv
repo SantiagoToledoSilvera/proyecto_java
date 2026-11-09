@@ -1,0 +1,5 @@
+id;nombre;documento;correo;fecha_nacimiento;rol;salario
+1;Carlos Ruiz;987654;carlos@mail.com;1985-03-20;Administrador;2500000.5
+2;Carlos Ruiz;987654;carlos@mail.com;1985-03-20;Administrador;2500000.5
+3;Admin Principal;1000;admin@crediya.com;1990-01-01;Gerente;3000000.0
+4;Admin Principal;1000;admin@crediya.com;1990-01-01;Gerente;3000000.0

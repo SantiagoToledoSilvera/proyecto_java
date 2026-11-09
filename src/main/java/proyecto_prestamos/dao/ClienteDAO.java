@@ -130,5 +130,29 @@ public class ClienteDAO {
             System.out.println("Error en la busqueda: " + e.getMessage());
         }
         return null;
-    } 
+    }
+    
+        public boolean insertarConId(Cliente c) {
+        String sql = "INSERT INTO clientes (id, nombre, documento, correo, fecha_nacimiento, telefono) "
+                + "VALUES (?, ?, ?, ?, ?, ?)";
+        Connection con = Conexion.getInstancia().getConexion();
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, c.getId());
+            ps.setString(2, c.getNombre());
+            ps.setString(3, c.getDocumento());
+            ps.setString(4, c.getCorreo());
+            if (c.getFNacim() == null || c.getFNacim().isEmpty()) {
+                ps.setNull(5, Types.DATE);
+            } else {
+                ps.setDate(5, Date.valueOf(c.getFNacim()));
+            }
+            ps.setString(6, c.getTelefono());
+            ps.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            System.out.println("No se pudo cargar cliente " + c.getId() + ": " + e.getMessage());
+            return false;
+        }
+    }
+    
 }

@@ -1,3 +1,8 @@
+C:\Users\Asus\Documents\NetBeansProjects\proyectos\src\main\java\proyecto_prestamos\ArchivosDB\ArchivoCliente.java
+C:\Users\Asus\Documents\NetBeansProjects\proyectos\src\main\java\proyecto_prestamos\ArchivosDB\ArchivoCsv.java
+C:\Users\Asus\Documents\NetBeansProjects\proyectos\src\main\java\proyecto_prestamos\ArchivosDB\ArchivoEmpleado.java
+C:\Users\Asus\Documents\NetBeansProjects\proyectos\src\main\java\proyecto_prestamos\ArchivosDB\ArchivoPago.java
+C:\Users\Asus\Documents\NetBeansProjects\proyectos\src\main\java\proyecto_prestamos\ArchivosDB\ArchivoPrestamo.java
 C:\Users\Asus\Documents\NetBeansProjects\proyectos\src\main\java\proyecto_prestamos\conexion\Conexion.java
 C:\Users\Asus\Documents\NetBeansProjects\proyectos\src\main\java\proyecto_prestamos\dao\ClienteDAO.java
 C:\Users\Asus\Documents\NetBeansProjects\proyectos\src\main\java\proyecto_prestamos\dao\EmpleadoDAO.java
@@ -8,6 +13,7 @@ C:\Users\Asus\Documents\NetBeansProjects\proyectos\src\main\java\proyecto_presta
 C:\Users\Asus\Documents\NetBeansProjects\proyectos\src\main\java\proyecto_prestamos\menus\GestionCliente.java
 C:\Users\Asus\Documents\NetBeansProjects\proyectos\src\main\java\proyecto_prestamos\menus\GestionEmpleado.java
 C:\Users\Asus\Documents\NetBeansProjects\proyectos\src\main\java\proyecto_prestamos\menus\MenuAdmin.java
+C:\Users\Asus\Documents\NetBeansProjects\proyectos\src\main\java\proyecto_prestamos\menus\MenuArchivos.java
 C:\Users\Asus\Documents\NetBeansProjects\proyectos\src\main\java\proyecto_prestamos\menus\MenuBase.java
 C:\Users\Asus\Documents\NetBeansProjects\proyectos\src\main\java\proyecto_prestamos\menus\MenuCliente.java
 C:\Users\Asus\Documents\NetBeansProjects\proyectos\src\main\java\proyecto_prestamos\menus\MenuReportes.java
@@ -24,4 +30,5 @@ C:\Users\Asus\Documents\NetBeansProjects\proyectos\src\main\java\proyecto_presta
 C:\Users\Asus\Documents\NetBeansProjects\proyectos\src\main\java\proyecto_prestamos\servicio\NegocioException.java
 C:\Users\Asus\Documents\NetBeansProjects\proyectos\src\main\java\proyecto_prestamos\servicio\PrestamoService.java
 C:\Users\Asus\Documents\NetBeansProjects\proyectos\src\main\java\proyecto_prestamos\servicio\ReporteService.java
+C:\Users\Asus\Documents\NetBeansProjects\proyectos\src\main\java\proyecto_prestamos\servicio\RespaldoService.java
 C:\Users\Asus\Documents\NetBeansProjects\proyectos\src\main\java\proyecto_prestamos\servicio\SesionActual.java

@@ -1,15 +1,11 @@
 package proyecto_prestamos;
 
-import java.util.List;
 import java.util.Scanner;
-import proyecto_prestamos.dao.PrestamoDAO;
 import proyecto_prestamos.servicio.AuthService;
 import proyecto_prestamos.servicio.InteresCompuesto;
 import proyecto_prestamos.servicio.PrestamoService;
 import proyecto_prestamos.servicio.SesionActual;
 import proyecto_prestamos.menus.*;
-import proyecto_prestamos.modelos.Prestamo;
-import proyecto_prestamos.servicio.ReporteService;
 
 
 public class main {
@@ -20,11 +16,6 @@ public class main {
         String op; 
         Entrada in = new Entrada(sc);
         PrestamoService servicio = new PrestamoService(new InteresCompuesto());
-        
-        /** _________________ **/
-         
-         
-         /** __________________ **/
         
         do {
             System.out.println("""

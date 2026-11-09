@@ -6,9 +6,12 @@ proyecto_prestamos\modelos\Cliente.class
 proyecto_prestamos\servicio\ReporteService.class
 proyecto_prestamos\modelos\Rol.class
 proyecto_prestamos\modelos\Empleado.class
+proyecto_prestamos\ArchivosDB\ArchivoPrestamo.class
 proyecto_prestamos\modelos\EstadoPrestamos.class
 proyecto_prestamos\menus\MenuAdmin.class
+proyecto_prestamos\ArchivosDB\ArchivoCliente.class
 proyecto_prestamos\servicio\PrestamoService.class
+proyecto_prestamos\ArchivosDB\ArchivoEmpleado.class
 proyecto_prestamos\modelos\Pago.class
 proyecto_prestamos\servicio\CalculoInteres.class
 proyecto_prestamos\dao\PrestamoDAO.class
@@ -16,6 +19,8 @@ proyecto_prestamos\menus\GestionEmpleado.class
 proyecto_prestamos\servicio\InteresCompuesto.class
 proyecto_prestamos\servicio\NegocioException.class
 proyecto_prestamos\modelos\Persona.class
+proyecto_prestamos\ArchivosDB\ArchivoPago.class
+proyecto_prestamos\servicio\RespaldoService.class
 proyecto_prestamos\dao\PagoDAO.class
 proyecto_prestamos\menus\GestionCliente.class
 proyecto_prestamos\menus\Entrada.class
@@ -24,4 +29,6 @@ proyecto_prestamos\main.class
 proyecto_prestamos\menus\MenuBase.class
 proyecto_prestamos\menus\MenuReportes.class
 proyecto_prestamos\servicio\AuthService.class
+proyecto_prestamos\menus\MenuArchivos.class
 proyecto_prestamos\menus\MenuCliente.class
+proyecto_prestamos\ArchivosDB\ArchivoCsv.class

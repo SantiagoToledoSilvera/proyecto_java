@@ -134,4 +134,29 @@ public class EmpleadoDAO {
         }
         return null;
     }
+    
+        public boolean insertarConId(Empleado e) {
+        String sql = "INSERT INTO empleados (id, nombre, documento, correo, fecha_nacimiento, rol, salario) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?)";
+        Connection con = Conexion.getInstancia().getConexion();
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, e.getId());
+            ps.setString(2, e.getNombre());
+            ps.setString(3, e.getDocumento());
+            ps.setString(4, e.getCorreo());
+            if (e.getFNacim() == null || e.getFNacim().isEmpty()) {
+                ps.setNull(5, Types.DATE);
+            } else {
+                ps.setDate(5, Date.valueOf(e.getFNacim()));
+            }
+            ps.setString(6, e.getRol());
+            ps.setDouble(7, e.getSalario());
+            ps.executeUpdate();
+            return true;
+        } catch (SQLException x) {
+            System.out.println("No se pudo cargar empleado " + e.getId() + ": " + x.getMessage());
+            return false;
+        }
+    }
+    
 }

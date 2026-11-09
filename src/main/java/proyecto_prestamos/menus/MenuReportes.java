@@ -56,8 +56,8 @@ public class MenuReportes extends MenuBase {
                     morosos.forEach(id -> System.out.println("Cliente id: " + id));
                 }
             }
-            case "5" -> System.out.println("Cartera pendiente: "
-                    + reportes.carteraPendiente(servicio.listarMisPrestamos()));
+            case "5" -> System.out.println(String.format("Cartera pendiente: $%,.2f", 
+                    reportes.carteraPendiente(servicio.listarMisPrestamos())));
             case "6" -> {
                 var totales = reportes.totalPagadoPorPrestamo(servicio.historialGeneral());
                 if (totales.isEmpty()) {

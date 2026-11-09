@@ -153,4 +153,30 @@ public class PrestamoDAO {
     return lista;
 }
     
+    public boolean insertarConId(Prestamo p) {
+        String sql = "INSERT INTO prestamos (id, cliente_id, empleado_id, monto, interes, cuotas, "
+                + "fecha_inicio, estado, saldo_pendiente) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        Connection con = Conexion.getInstancia().getConexion();
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, p.getId());
+            ps.setInt(2, p.getClienteId());
+            if (p.getEmpleadoId() == 0) {
+                ps.setNull(3, Types.INTEGER);
+            } else {
+                ps.setInt(3, p.getEmpleadoId());
+            }
+            ps.setDouble(4, p.getMonto());
+            ps.setDouble(5, p.getInteres());
+            ps.setInt(6, p.getCuotas());
+            ps.setDate(7, Date.valueOf(p.getFechaInicio()));
+            ps.setString(8, p.getEstado().name());
+            ps.setDouble(9, p.getSaldoPendiente());
+            ps.executeUpdate();
+            return true;
+        } catch (SQLException x) {
+            System.out.println("No se pudo cargar prestamo " + p.getId() + ": " + x.getMessage());
+            return false;
+        }
+    }
+    
 }

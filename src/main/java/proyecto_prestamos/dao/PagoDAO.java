@@ -5,6 +5,7 @@ import proyecto_prestamos.conexion.Conexion;
 import java.util.ArrayList;
 import java.util.List;
 import proyecto_prestamos.modelos.Pago;
+import proyecto_prestamos.modelos.Prestamo;
 
 public class PagoDAO {
     
@@ -68,5 +69,22 @@ public class PagoDAO {
                 rs.getDate("fecha_pago").toLocalDate(),
                 rs.getDouble("monto")
         );
-    } 
+    }
+    
+    public boolean insertarConId(Pago p) {
+        String sql = "INSERT INTO pagos (id, prestamo_id, fecha_pago, monto) VALUES (?, ?, ?, ?)";
+        Connection con = Conexion.getInstancia().getConexion();
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, p.getId());
+            ps.setInt(2, p.getPrestamoId());
+            ps.setDate(3, Date.valueOf(p.getFechaPago()));
+            ps.setDouble(4, p.getMonto());
+            ps.executeUpdate();
+            return true;
+        } catch (SQLException x) {
+            System.out.println("No se pudo cargar pago " + p.getId() + ": " + x.getMessage());
+            return false;
+        }
+    }
+    
 }
