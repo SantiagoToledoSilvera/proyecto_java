@@ -91,9 +91,9 @@ public class PrestamoDAO {
 
             int filas = ps.executeUpdate();
             if (filas == 0) {
-                System.out.println("No existe un préstamo con ese id");
+                System.out.println("No existe un prestamo con ese id");
             } else {
-                System.out.println("Préstamo actualizado con éxito");
+                System.out.println("Prestamo actualizado con éxito");
             }
         } catch (SQLException x) {
             System.out.println("Error al actualizar: " + x.getMessage());

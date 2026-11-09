@@ -1,6 +1,7 @@
 package proyecto_prestamos.servicio;
 
 import java.time.LocalDate;
+import java.util.List;
 import proyecto_prestamos.dao.PagoDAO;
 import proyecto_prestamos.dao.PrestamoDAO;
 import proyecto_prestamos.modelos.EstadoPrestamos;
@@ -89,7 +90,7 @@ public class PrestamoService {
         prestamoDAO.actualizar(p);
     }
     
-    public void registrarPago(int prestamoId, double monto) {
+        public void registrarPago(int prestamoId, double monto) {
         exigirSesion();
         SesionActual s = SesionActual.getInstancia();
 
@@ -97,7 +98,6 @@ public class PrestamoService {
         if (p == null) {
             throw new NegocioException("El prestamo no existe");
         }
-
         if (!s.esAdmin() && p.getClienteId() != s.getPersona().getId()) {
             throw new NegocioException("No se puede pagar prestamos ajenos");
         }
@@ -111,6 +111,13 @@ public class PrestamoService {
             throw new NegocioException("El pago supera el saldo pendiente");
         }
 
+        double total = calculo.calcularMontoTotal(p.getMonto(), p.getInteres(), p.getCuotas());
+        double cuota = calculo.calcularCuota(total, p.getCuotas());
+        boolean liquidaDeuda = monto >= p.getSaldoPendiente();
+        if (monto < cuota && !liquidaDeuda) {
+            throw new NegocioException("El pago minimo es la cuota mensual: " + cuota);
+        }
+
         pagoDAO.insertar(new Pago(0, prestamoId, LocalDate.now(), monto));
 
         double nuevoSaldo = Math.round((p.getSaldoPendiente() - monto) * 100) / 100.0;
@@ -121,6 +128,7 @@ public class PrestamoService {
         }
 
         prestamoDAO.actualizar(p);
+        
     }
     
     public java.util.List<Prestamo> listarMisPrestamos() {
@@ -143,6 +151,11 @@ public class PrestamoService {
             throw new NegocioException("No puede ver pagos de prestamos ajenos");
         }
         return pagoDAO.listarPorPrestamo(prestamoId);
+    }
+    
+    public List<Pago> historialGeneral() {
+        exigirAdmin();
+        return pagoDAO.listar();
     }
     
 }
