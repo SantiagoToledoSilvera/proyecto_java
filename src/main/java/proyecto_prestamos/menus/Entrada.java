@@ -34,4 +34,17 @@ public class Entrada {
             }
         }
     }
+    
+    public String fecha(String mensaje) {
+    while (true) {
+        String f = texto(mensaje);
+        try {
+            java.time.LocalDate.parse(f); 
+            return f;
+        } catch (java.time.format.DateTimeParseException e) {
+            System.out.println("Formato invalido. Use aaaa-mm-dd (ej: 1990-05-10)");
+        }
+    }
+}
+    
 }

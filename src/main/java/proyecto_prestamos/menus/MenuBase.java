@@ -35,7 +35,7 @@ public abstract class MenuBase {
                 System.out.println("Error: " + e.getMessage());
             }
         } while (!op.equals("0"));
-        System.out.println("Sesion cerrada");
+        System.out.println("Volviendo...");
     }
 
     protected void pagar() {
@@ -66,5 +66,8 @@ public abstract class MenuBase {
         for (Pago p : lista) {
             System.out.println(p);
         }
-    }
+    }   
+    protected MenuBase(Entrada in) {
+        this(in, null);
+    }  
 }

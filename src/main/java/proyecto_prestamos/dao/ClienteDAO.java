@@ -75,7 +75,7 @@ public class ClienteDAO {
             if (filas == 0) {
                 System.out.println("No existe un cliente con ese id");
             } else {
-                System.out.println("Cliente actualizado con éxito");
+                System.out.println("Cliente actualizado con exito");
             }
         } catch (SQLException e) {
             System.out.println("Error al actualizar: " + e.getMessage());
@@ -93,10 +93,10 @@ public class ClienteDAO {
             if (filas == 0) {
                 System.out.println("No existe un cliente con ese id");
             } else {
-                System.out.println("Cliente eliminado con éxito");
+                System.out.println("Cliente eliminado con exito");
             }
         } catch (SQLException e) {
-            System.out.println("Error al eliminar (¿tiene préstamos asociados?): " + e.getMessage());
+            System.out.println("Error al eliminar (¿tiene prestamos asociados?): " + e.getMessage());
         }
     }
      
@@ -127,7 +127,7 @@ public class ClienteDAO {
                 }
             }
         } catch (SQLException e) {
-            System.out.println("Error en la búsqueda: " + e.getMessage());
+            System.out.println("Error en la busqueda: " + e.getMessage());
         }
         return null;
     } 

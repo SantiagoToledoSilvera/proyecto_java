@@ -19,6 +19,8 @@ public class MenuAdmin extends MenuBase {
                3. Rechazar solicitud
                4. Registrar pago
                5. Ver historial de pagos
+               6. Gestionar Clientes
+               7. Gestionar Empleado
                0. Cerrar sesion
                """;
     }
@@ -37,6 +39,8 @@ public class MenuAdmin extends MenuBase {
             }
             case "4" -> pagar();
             case "5" -> verHistorial();
+            case "6" -> new GestionCliente(in).mostrar();
+            case "7" -> new GestionEmpleado(in).mostrar();
             default -> System.out.println("Opcion invalida");
         }
     }  
