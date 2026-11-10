@@ -52,9 +52,15 @@ public class GestionCliente extends MenuBase {
             System.out.println("No hay clientes");
             return;
         }
+       System.out.println("\n--- LISTADO DE CLIENTES ---");
         for (Cliente c : lista) {
-            System.out.println(c);
+            System.out.println("ID: " + c.getId() 
+                + " | Nombre: " + c.getNombre() 
+                + " | Documento: " + c.getDocumento() 
+                + " | Correo: " + c.getCorreo() 
+                + " | Tel: " + c.getTelefono());
         }
+        System.out.println("---------------------------\n");
     }
 
     private void actualizar() {

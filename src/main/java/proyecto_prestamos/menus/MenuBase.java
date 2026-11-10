@@ -23,7 +23,7 @@ public abstract class MenuBase {
     public final void mostrar() {
         String op;
         do {
-            System.out.println("===== " + titulo() + " =====");
+            System.out.println("\n===== " + titulo() + " =====");
             System.out.println(opciones());
             op = in.texto("Opcion: ");
 
@@ -51,9 +51,16 @@ public abstract class MenuBase {
             System.out.println("No hay prestamos");
             return;
         }
+        System.out.println("\n--- LISTADO DE PRESTAMOS ---");
         for (Prestamo p : lista) {
-            System.out.println(p);
+            System.out.println("ID: " + p.getId() 
+                + " | Cliente: " + p.getClienteId() 
+                + " | Monto: $" + p.getMonto() 
+                + " | Cuotas: " + p.getCuotas() 
+                + " | Estado: " + p.getEstado()
+                + " | Saldo: $" + p.getSaldoPendiente());
         }
+        System.out.println("----------------------------\n");
     }
     
     protected void verHistorial() {
@@ -63,9 +70,14 @@ public abstract class MenuBase {
             System.out.println("No hay pagos registrados");
             return;
         }
+        System.out.println("\n--- HISTORIAL DE PAGOS ---");
         for (Pago p : lista) {
-            System.out.println(p);
+            System.out.println("ID Pago: " + p.getId() 
+                + " | Prestamo ID: " + p.getPrestamoId() 
+                + " | Fecha: " + p.getFechaPago() 
+                + " | Monto: $" + p.getMonto());
         }
+        System.out.println("--------------------------\n");
     }   
     protected MenuBase(Entrada in) {
         this(in, null);

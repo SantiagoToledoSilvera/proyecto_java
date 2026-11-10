@@ -55,9 +55,16 @@ public class GestionEmpleado extends MenuBase {
             System.out.println("No hay empleados");
             return;
         }
+        System.out.println("\n--- LISTADO DE EMPLEADOS ---");
         for (Empleado c : lista) {
-            System.out.println(c);
+            System.out.println("ID: " + c.getId() 
+                + " | Nombre: " + c.getNombre() 
+                + " | Documento: " + c.getDocumento() 
+                + " | Rol: " + c.getRol() 
+                + " | Correo: " + c.getCorreo() 
+                + " | Salario: $" + c.getSalario());
         }
+        System.out.println("----------------------------\n");
     }
 
     private void actualizar() {

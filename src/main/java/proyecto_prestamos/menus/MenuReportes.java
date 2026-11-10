@@ -36,16 +36,50 @@ public class MenuReportes extends MenuBase {
     @Override
     protected void ejecutar(String op) {
         switch (op) {
-            case "1" -> reportes.activos(servicio.listarMisPrestamos())
-                .forEach(p -> System.out.println(p));
-            case "2" -> reportes.solicitudesPendientes(servicio.listarMisPrestamos())
-                    .forEach(p -> System.out.println(p));
+            case "1" -> {
+                List<Prestamo> lista = reportes.activos(servicio.listarMisPrestamos());
+                if (lista.isEmpty()) {
+                    System.out.println("No hay prestamos activos");
+                } else {
+                    System.out.println("\n--- PRESTAMOS ACTIVOS ---");
+                    for (Prestamo p : lista) {
+                        System.out.println("ID: " + p.getId() 
+                            + " | Cliente: " + p.getClienteId() 
+                            + " | Monto: $" + p.getMonto() 
+                            + " | Estado: " + p.getEstado()
+                            + " | Saldo: $" + p.getSaldoPendiente());
+                    }
+                    System.out.println("-------------------------\n");
+                }
+            }
+            case "2" -> {
+                List<Prestamo> lista = reportes.solicitudesPendientes(servicio.listarMisPrestamos());
+                if (lista.isEmpty()) {
+                    System.out.println("No hay solicitudes pendientes");
+                } else {
+                    System.out.println("\n--- SOLICITUDES PENDIENTES ---");
+                    for (Prestamo p : lista) {
+                        System.out.println("ID: " + p.getId() 
+                            + " | Cliente: " + p.getClienteId() 
+                            + " | Monto: $" + p.getMonto() 
+                            + " | Estado: " + p.getEstado());
+                    }
+                    System.out.println("------------------------------\n");
+                }
+            }
             case "3" -> {
                 List<Prestamo> vencidos = reportes.vencidos(servicio.listarMisPrestamos());
                 if (vencidos.isEmpty()) {
                     System.out.println("No hay prestamos vencidos");
                 } else {
-                    vencidos.forEach(p -> System.out.println(p));
+                    System.out.println("\n--- PRESTAMOS VENCIDOS ---");
+                    for (Prestamo p : vencidos) {
+                        System.out.println("ID: " + p.getId() 
+                            + " | Cliente: " + p.getClienteId() 
+                            + " | Monto: $" + p.getMonto() 
+                            + " | Saldo: $" + p.getSaldoPendiente());
+                    }
+                    System.out.println("--------------------------\n");
                 }
             }
             case "4" -> {
@@ -53,7 +87,11 @@ public class MenuReportes extends MenuBase {
                 if (morosos.isEmpty()) {
                     System.out.println("No hay clientes morosos");
                 } else {
-                    morosos.forEach(id -> System.out.println("Cliente id: " + id));
+                    System.out.println("\n--- CLIENTES MOROSOS ---");
+                    for (Integer id : morosos) {
+                        System.out.println("Cliente ID: " + id);
+                    }
+                    System.out.println("------------------------\n");
                 }
             }
             case "5" -> System.out.println(String.format("Cartera pendiente: $%,.2f", 
@@ -63,8 +101,10 @@ public class MenuReportes extends MenuBase {
                 if (totales.isEmpty()) {
                     System.out.println("No hay pagos registrados");
                 } else {
+                    System.out.println("\n--- TOTAL PAGADO POR PRESTAMO ---");
                     totales.forEach((id, total) ->
-                            System.out.println("Prestamo " + id + ": pagado " + total));
+                            System.out.println("Prestamo ID: " + id + " | Total Pagado: $" + total));
+                    System.out.println("-----------------------------------\n");
                 }
             }
             case "7" -> {
@@ -74,7 +114,14 @@ public class MenuReportes extends MenuBase {
                 if (pagos.isEmpty()) {
                     System.out.println("Ese cliente no tiene pagos");
                 } else {
-                    pagos.forEach(pg -> System.out.println(pg));
+                    System.out.println("\n--- PAGOS DEL CLIENTE ---");
+                    for (Pago pg : pagos) {
+                        System.out.println("ID Pago: " + pg.getId() 
+                            + " | Prestamo ID: " + pg.getPrestamoId() 
+                            + " | Fecha: " + pg.getFechaPago() 
+                            + " | Monto: $" + pg.getMonto());
+                    }
+                    System.out.println("-------------------------\n");
                 }
             }
             case "8" -> {
@@ -84,7 +131,14 @@ public class MenuReportes extends MenuBase {
                 if (pagos.isEmpty()) {
                     System.out.println("No hay pagos en ese rango");
                 } else {
-                    pagos.forEach(pg -> System.out.println(pg));
+                    System.out.println("\n--- PAGOS ENTRE FECHAS ---");
+                    for (Pago pg : pagos) {
+                        System.out.println("ID Pago: " + pg.getId() 
+                            + " | Prestamo ID: " + pg.getPrestamoId() 
+                            + " | Fecha: " + pg.getFechaPago() 
+                            + " | Monto: $" + pg.getMonto());
+                    }
+                    System.out.println("--------------------------\n");
                 }
             }
             default -> System.out.println("Opcion invalida");
