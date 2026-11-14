@@ -8,10 +8,10 @@ import proyecto_prestamos.servicio.InteresCompuesto;
 import proyecto_prestamos.servicio.PrestamoService;
 import proyecto_prestamos.servicio.ReporteService;
 
-public class MenuReportes extends MenuBase {
+public class GestorPrestamos extends MenuBase {
     private final ReporteService reportes = new ReporteService(new InteresCompuesto());
 
-    public MenuReportes(Entrada in, PrestamoService servicio) {
+    public GestorPrestamos(Entrada in, PrestamoService servicio) {
         super(in, servicio);
     }
 
@@ -25,7 +25,7 @@ public class MenuReportes extends MenuBase {
                2. Solicitudes pendientes
                3. Prestamos vencidos
                4. Clientes morosos
-               5. Cartera pendiente total
+               5. Mostrar resumen
                6. Total pagado por prestamo
                7. Pagos de un cliente
                8. Pagos entre fechas
@@ -37,7 +37,7 @@ public class MenuReportes extends MenuBase {
     protected void ejecutar(String op) {
         switch (op) {
             case "1" -> {
-                List<Prestamo> lista = reportes.activos(servicio.listarMisPrestamos());
+                List<Prestamo> lista = reportes.activos(servicio.filtrarPrestamosActivos());
                 if (lista.isEmpty()) {
                     System.out.println("No hay prestamos activos");
                 } else {
@@ -53,7 +53,7 @@ public class MenuReportes extends MenuBase {
                 }
             }
             case "2" -> {
-                List<Prestamo> lista = reportes.solicitudesPendientes(servicio.listarMisPrestamos());
+                List<Prestamo> lista = reportes.solicitudesPendientes(servicio.filtrarPrestamosActivos());
                 if (lista.isEmpty()) {
                     System.out.println("No hay solicitudes pendientes");
                 } else {
@@ -68,7 +68,7 @@ public class MenuReportes extends MenuBase {
                 }
             }
             case "3" -> {
-                List<Prestamo> vencidos = reportes.vencidos(servicio.listarMisPrestamos());
+                List<Prestamo> vencidos = reportes.vencidos(servicio.filtrarPrestamosVencidos());
                 if (vencidos.isEmpty()) {
                     System.out.println("No hay prestamos vencidos");
                 } else {
@@ -83,7 +83,7 @@ public class MenuReportes extends MenuBase {
                 }
             }
             case "4" -> {
-                List<Integer> morosos = reportes.clientesMorosos(servicio.listarMisPrestamos());
+                List<Integer> morosos = reportes.clientesMorosos(servicio.filtrarPrestamosActivos());
                 if (morosos.isEmpty()) {
                     System.out.println("No hay clientes morosos");
                 } else {
@@ -95,8 +95,8 @@ public class MenuReportes extends MenuBase {
                 }
             }
             case "5" -> System.out.println(String.format("Cartera pendiente: $%,.2f", 
-                    reportes.carteraPendiente(servicio.listarMisPrestamos())));
-            case "6" -> {
+                    reportes.mostrarResumen(servicio.filtrarPrestamosActivos())));
+            case "6" -> {               /** totalPagadoPorPrestamo  **/
                 var totales = reportes.totalPagadoPorPrestamo(servicio.historialGeneral());
                 if (totales.isEmpty()) {
                     System.out.println("No hay pagos registrados");
@@ -110,7 +110,7 @@ public class MenuReportes extends MenuBase {
             case "7" -> {
                 int clienteId = in.entero("Id del cliente: ");
                 List<Pago> pagos = reportes.pagosDeCliente(
-                        clienteId, servicio.listarMisPrestamos(), servicio.historialGeneral());
+                        clienteId, servicio.filtrarPrestamosActivos(), servicio.historialGeneral());
                 if (pagos.isEmpty()) {
                     System.out.println("Ese cliente no tiene pagos");
                 } else {

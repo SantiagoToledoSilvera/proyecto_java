@@ -131,7 +131,16 @@ public class PrestamoService {
         
     }
     
-    public java.util.List<Prestamo> listarMisPrestamos() {
+    public java.util.List<Prestamo> filtrarPrestamosActivos() {
+        exigirSesion();
+        SesionActual s = SesionActual.getInstancia();
+        if (s.esAdmin()) {
+            return prestamoDAO.listar();
+        }
+        return prestamoDAO.listarPorCliente(s.getPersona().getId());
+    }
+    
+    public java.util.List<Prestamo> filtrarPrestamosVencidos() {
         exigirSesion();
         SesionActual s = SesionActual.getInstancia();
         if (s.esAdmin()) {

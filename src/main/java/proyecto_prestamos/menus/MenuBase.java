@@ -46,7 +46,7 @@ public abstract class MenuBase {
     }
 
     protected void verPrestamos() {
-        List<Prestamo> lista = servicio.listarMisPrestamos();
+        List<Prestamo> lista = servicio.filtrarPrestamosActivos();
         if (lista.isEmpty()) {
             System.out.println("No hay prestamos");
             return;

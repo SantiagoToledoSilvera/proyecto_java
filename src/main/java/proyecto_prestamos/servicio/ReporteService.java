@@ -56,7 +56,7 @@ public class ReporteService {
                 .collect(Collectors.toList());
     }
 
-    public double carteraPendiente(List<Prestamo> lista) {
+    public double mostrarResumen(List<Prestamo> lista) {
         return lista.stream()
                 .filter(p -> p.getEstado() == EstadoPrestamos.ACTIVO)
                 .mapToDouble(p -> p.getSaldoPendiente())
